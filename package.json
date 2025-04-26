@@ -1,0 +1,33 @@
+{
+  "name": "my-simple-electron-app",
+  "version": "1.0.0",
+  "description": "A simple electron app scaffold attempt",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Lee Charles Laing <lcharleslainglaing@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "22.3.27",
+    "electron-builder": "^26.0.12",
+    "electron-reload": "1.5.0"
+  },
+  "build": {
+    "appId": "com.simpleapp.app",
+    "productName": "SimpleApp",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        "portable"
+      ]
+    }
+  }
+}
