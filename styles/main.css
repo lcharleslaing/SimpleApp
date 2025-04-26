@@ -1,0 +1,134 @@
+/* Google-inspired Material Design styles for SimpleApp */
+
+:root {
+  --primary: #1a73e8;
+  --primary-dark: #174ea6;
+  --primary-light: #e8f0fe;
+  --background: #f5f5f7;
+  --surface: #fff;
+  --on-primary: #fff;
+  --on-surface: #202124;
+  --border-radius: 12px;
+  --shadow: 0 4px 20px rgba(60,64,67,0.08), 0 1.5px 4px rgba(60,64,67,0.08);
+  --transition: 0.2s cubic-bezier(.4,0,.2,1);
+}
+
+body {
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--on-surface);
+  min-height: 100vh;
+}
+
+nav.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin: 0 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1.2rem;
+  border-radius: 24px;
+  transition: background var(--transition), color var(--transition);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.nav button.active, .nav button:hover {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 70vh;
+}
+
+.container {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  background: var(--surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin: 2rem auto;
+}
+
+.welcome-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  width: 72px;
+  height: 72px;
+  margin-right: 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.10);
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--primary-dark);
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #5f6368;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.10);
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.cta-button:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 16px rgba(26,115,232,0.15);
+  transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 1.2rem 0.5rem;
+  }
+  .welcome-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .logo {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+}

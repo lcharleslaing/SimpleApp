@@ -1,5 +1,6 @@
 const { app, BrowserWindow, screen } = require('electron')
 const path = require('path')
+const express = require('express')
 
 // Enable hot reload for development (simplified configuration)
 if (process.env.NODE_ENV === 'development') {
@@ -11,6 +12,26 @@ const iconPath = path.join(__dirname, 'assets/icon.png')
 
 // Set application name for proper icon association in Windows
 app.name = 'SimpleApp'
+
+const SERVER_PORT = 3000
+let serverStarted = false
+
+const startServer = () => {
+  return new Promise((resolve, reject) => {
+    const serverApp = express()
+    // Serve static files (including index.html, views, styles, etc.)
+    serverApp.use(express.static(__dirname))
+    // Serve partials from /partials
+    serverApp.use('/partials', express.static(path.join(__dirname, 'partials')))
+    serverApp.listen(SERVER_PORT, () => {
+      console.log(`Express server running at http://localhost:${SERVER_PORT}`)
+      resolve()
+    }).on('error', (err) => {
+      console.error('Failed to start Express server:', err)
+      reject(err)
+    })
+  })
+}
 
 const createWindow = () => {
   // Get the primary display dimensions
@@ -45,7 +66,7 @@ const createWindow = () => {
     win.show()
   })
 
-  win.loadFile('index.html')
+  win.loadURL(`http://localhost:${SERVER_PORT}/index.html`)
 
   // Open DevTools in development mode
   if (process.env.NODE_ENV === 'development') {
@@ -53,7 +74,14 @@ const createWindow = () => {
   }
 }
 
-app.whenReady().then(() => {
+app.commandLine.appendSwitch('ignore-certificate-errors');
+console.log('Ignoring certificate errors for development');
+
+app.whenReady().then(async () => {
+  if (!serverStarted) {
+    await startServer()
+    serverStarted = true
+  }
   createWindow()
 })
 
