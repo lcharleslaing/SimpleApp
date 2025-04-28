@@ -7,7 +7,8 @@
     "start": "electron .",
     "dev": "cross-env NODE_ENV=development electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "build": "electron-builder"
   },
   "author": "Lee Charles Laing <lcharleslainglaing@gmail.com>",
   "license": "MIT",
@@ -28,7 +29,10 @@
       "target": [
         "portable"
       ]
-    }
+    },
+    "files": [
+      "**/*"
+    ]
   },
   "dependencies": {
     "express": "^5.1.0"
